@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tasks for Category <%= @category.id %></h1>
+
+<div id="tasks">
+  <% @tasks.each do |task| %>
+    <%= render task %>
+    <p>
+      <%= link_to "Show this task", category_task_path(@category, task.id) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to 'Add Task', new_category_task_path(@category) %>

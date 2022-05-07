@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <p>
+    <strong>Body:</strong></br>
+    <%= @task.body %></br>
+    <%= @task.created_at %>
+  </p>
+
+</div>
+
+<p>
+  <%= link_to "Edit this task", edit_category_task_path(@category) %>
+</p>
+<p>
+  <%= button_to "Delete", category_task_path(@category, @task), method: :delete %>
+</p>
+

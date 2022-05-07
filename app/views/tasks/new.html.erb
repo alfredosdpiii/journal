@@ -1,0 +1,26 @@
+CREATE TASK
+
+<%= form_with model: [@category, @task], local: true do |f| %>
+  <p>
+    <% if @task.errors.any? %>
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+
+      </ul>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :body %><br/>
+    <%= f.text_field :body %>
+  </p>
+
+  <p>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
