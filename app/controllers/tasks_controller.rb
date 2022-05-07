@@ -19,9 +19,7 @@ class TasksController < ApplicationController
 
   def update
     @task = @category.tasks.find(params[:id])
-    if @task.update!(task_params)
-      redirect_to category_tasks_path(@category)
-    end
+    redirect_to category_tasks_path(@category) if @task.update!(task_params)
   end
 
   def create
@@ -35,17 +33,15 @@ class TasksController < ApplicationController
 
   def destroy
     @task = @category.tasks.find(params[:id])
-  
 
-    if @task.destroy!
-      redirect_to category_tasks_path(@category)
-    end
+    redirect_to category_tasks_path(@category) if @task.destroy!
   end
 
   def todays_tasks(now = Time.now)
-    @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day, now.tomorrow.at_beginning_of_day).where(user_id: current_user.id)
+    @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day,
+                        now.tomorrow.at_beginning_of_day).where(user_id: current_user.id)
   end
-  #WHERE CREATED_AT > DAY_START AND CREATED_AT < TOMORROW)
+  # WHERE CREATED_AT > DAY_START AND CREATED_AT < TOMORROW)
 
   private
 
@@ -54,6 +50,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:body,:category_id,:user_id)
+    params.require(:task).permit(:body, :category_id, :user_id)
   end
 end

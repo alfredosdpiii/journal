@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     # @categories = Category.find(1).tasks.where(user_id: current_user.id)
   end
-  
+
   def new
     @category = Category.new
   end
@@ -16,9 +16,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    if @category.save
-      redirect_to "/categories"
-    end
+    redirect_to '/categories' if @category.save
   end
 
   def edit
@@ -27,21 +25,19 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    if @category.update!(category_params)
-      redirect_to "/categories"
-    end
+    redirect_to '/categories' if @category.update!(category_params)
   end
 
   def destroy
     @category = Category.destroy(params[:id])
 
-    if @category.destroy!
-      redirect_to "/categories"
-    end
+    redirect_to '/categories' if @category.destroy!
   end
 
   private
+
   def category_params
     params.require(:category).permit(:title, :description)
   end
 end
+
