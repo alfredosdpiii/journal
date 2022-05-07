@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let!(:category) {Category.new}
+  let!(:category) { Category.new }
 
   context 'Validations' do
     it '1. is not valid without a title' do
@@ -13,7 +13,7 @@ RSpec.describe Category, type: :model do
     end
 
     it '2. should have a title with max length of 18' do
-      category.title = 'qweqweqweqweqweqweqwe' #21 chars
+      category.title = 'qweqweqweqweqweqweqwe' # 21 chars
 
       expect(category).to_not be_valid
     end
@@ -32,3 +32,4 @@ RSpec.describe Category, type: :model do
     end
   end
 end
+
