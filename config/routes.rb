@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
   get '/todays_tasks' => 'tasks#todays_tasks'
   resources :categories do
     resources :tasks
