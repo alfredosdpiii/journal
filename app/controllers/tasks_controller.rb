@@ -41,7 +41,6 @@ class TasksController < ApplicationController
     @tasks = Task.where('created_at BETWEEN ? AND ?', now.at_beginning_of_day,
                         now.tomorrow.at_beginning_of_day).where(user_id: current_user.id)
   end
-  # WHERE CREATED_AT > DAY_START AND CREATED_AT < TOMORROW)
 
   private
 
